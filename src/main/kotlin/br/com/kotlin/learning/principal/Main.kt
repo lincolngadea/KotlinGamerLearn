@@ -1,49 +1,44 @@
 package br.com.kotlin.learning.principal
-import br.com.kotlin.learning.model.Jogo
-import br.com.kotlin.learning.service.ConsumoApi
+
+import br.com.kotlin.learning.model.Game
+import br.com.kotlin.learning.service.ApiConsummer
 import java.util.Scanner
 
-
 fun main() {
-    val leitura = Scanner(System.`in`)
-    println("Digite um código de jogo para buscar:")
-    val busca = leitura.nextLine()
+    val read = Scanner(System.`in`)
+    println("Type a game code to search:")
+    val searchId = read.nextLine()
 
-    val buscaApi = ConsumoApi()
-    val informacaoJogo = buscaApi.buscaJogo(busca)
+    var myGame: Game? = null
 
+    val apiSearch = ApiConsummer()
 
-    var meuJogo: Jogo? = null
-
-    val resultado = runCatching {
-        meuJogo = Jogo(
-            informacaoJogo.info.title,
-            informacaoJogo.info.thumb
-        )
-    }
-
-    resultado.onFailure {
-        println("Jogo inexistente. Tente outro id.")
-    }
-
-    resultado.onSuccess {
-        println("Deseja inserir uma descrição personalizada? S/N")
-        val opcao = leitura.nextLine()
-        if (opcao.equals("s", true)) {
-            println("Insira a descrição personalizado para o jogo:")
-            val descricaoPersonalizada = leitura.nextLine()
-            meuJogo?.descricao = descricaoPersonalizada
-        } else {
-            meuJogo?.descricao = meuJogo?.titulo
-
+    apiSearch.gameSearch(searchId).onSuccess {
+        val resultGameObject = runCatching {
+            myGame = Game(
+                it.info.title,
+                it.info.thumb
+            )
+        }
+        resultGameObject.onFailure {
+            println("Game not found. try again other id.")
         }
 
-        println(meuJogo)
+        resultGameObject.onSuccess {
+            println("Do you want insert a custom description? Y/N")
+            val option = read.nextLine()
+            if (option.equals("y", true)) {
+                println("Insert a custom description in the game:")
+                val customDescription = read.nextLine()
+                myGame?.description = customDescription
+            } else {
+                myGame?.description = myGame?.title
+            }
+            println(myGame)
+        }
+
+        resultGameObject.onSuccess {
+            println("Success end search.")
+        }
     }
-
-    resultado.onSuccess {
-        println("Busca finalizada com sucesso.")
-    }
-
-
 }
