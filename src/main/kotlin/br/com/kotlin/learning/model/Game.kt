@@ -10,5 +10,4 @@ data class Game(val title:String,
                 "Descricao: $description"
     }
 
-
 }
