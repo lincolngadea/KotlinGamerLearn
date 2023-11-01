@@ -21,6 +21,9 @@ data class GameUser(
     }
 
     init {
+        if(this.name.isBlank()){
+            throw IllegalArgumentException("Name is null or blank!")
+        }
         this.email = checkEmail()
     }
 
@@ -40,7 +43,7 @@ data class GameUser(
     }
 
     private fun checkEmail(): String{
-        val emailRegex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\\\.[A-Za-z]{2,6}\$")
+        val emailRegex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
         if(emailRegex.matches(email)){
             return email
         }else{
