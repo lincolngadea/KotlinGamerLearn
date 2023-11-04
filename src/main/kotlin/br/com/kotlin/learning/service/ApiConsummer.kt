@@ -13,18 +13,6 @@ import java.net.http.HttpResponse
 
 class ApiConsummer {
     private val logger = KotlinLogging.logger {}
-//    fun gameSearchFirst(id: String): Result<InfoGame> {
-//        return runCatching {
-//            val url = "https://www.cheapshark.com/api/1.0/games?id=$id"
-//
-//            val json = dataConsumme(url)
-//            val gson = Gson()
-//
-//            gson.fromJson(json, InfoGame::class.java)
-//        }.onFailure {
-//            println("Error in request game API.")
-//        }
-//    }
 
     fun gameSearch(): Result<List<Game>>{
         return runCatching {

@@ -1,47 +1,23 @@
 package br.com.kotlin.learning.model
 
-import java.lang.IllegalArgumentException
-import java.util.Scanner
 import kotlin.random.Random
 
 data class GamerUser(
     var name: String,
     var email: String
 ) {
-    var birthDay: String? = null
-    var user: String? = null
+    private var birthDay: String? = null
+    private var user: String? = null
         set(value) {
             field = value
             if(internalId.isNullOrBlank() || internalId!!.isNotEmpty()) creatCustonInternalId()
         }
     private var internalId: String? = null
-        private set
 
-    val gamesSearched = mutableListOf<Game?>()
+    //    val gamesSearched = mutableListOf<Game?>()
     constructor(name: String, email: String, birthDay: String, user: String) : this(name, email) {
         this.birthDay = birthDay
         this.user = user
-    }
-
-    companion object{
-        fun createGamer(read: Scanner): GamerUser{
-            println("Well Come the AluGames! We are make your register. Type your name:")
-            val name = read.nextLine()
-            println("Type your email:")
-            val email = read.nextLine()
-            println("Do you want to complete your register with user and birthday?Y/N")
-            val option = read.nextLine()
-
-            return if (option.equals("Y",true)){
-                println("Type your birthday (DD/MM/YYYY):")
-                val birthDay = read.nextLine()
-                println("Type your username:")
-                val username = read.nextLine()
-                GamerUser(name,email,birthDay,username)
-            }else{
-                GamerUser(name,email)
-            }
-        }
     }
 
     init {
