@@ -1,11 +1,14 @@
 package br.com.kotlin.learning.principal
 
 import br.com.kotlin.learning.model.Game
+import br.com.kotlin.learning.model.GameUser
 import br.com.kotlin.learning.service.ApiConsummer
 import java.util.Scanner
 
 fun main() {
     val read = Scanner(System.`in`)
+    val gamer = GameUser.createGamer(read)
+    println(gamer)
     var myGame: Game? = null
     val apiSearch = ApiConsummer()
     do {
@@ -33,7 +36,7 @@ fun main() {
                 } else {
                     myGame?.description = myGame?.title
                 }
-                println(myGame)
+                gamer.gamesSearched.add(myGame)
             }
 
             resultGameObject.onSuccess {
@@ -43,4 +46,7 @@ fun main() {
         println("Do you want a new search?Y/N")
         val ask = read.nextLine()
     } while (ask.equals("Y", true))
+    println("Games Searcheds:")
+    println(gamer.gamesSearched)
+    println("End Search!")
 }

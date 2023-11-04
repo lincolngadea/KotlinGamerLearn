@@ -7,7 +7,8 @@ data class Game(val title:String,
         return "Meu Jogo: \n" +
                 "Título: $title \n" +
                 "Capa: $thumb \n" +
-                "Descricao: $description"
+                "Descricao: $description \n" +
+                "############################################### \n\n"
     }
 
 }
