@@ -44,12 +44,12 @@ data class GamerUser(
         }
     }
 
-//    init {
-//        if(this.name.isBlank()){
-//            throw IllegalArgumentException("Name is null or blank!")
-//        }
-//        this.email = checkEmail()
-//    }
+    init {
+        if(this.name.isBlank()){
+            throw IllegalArgumentException("Name is null or blank!")
+        }
+        this.email = checkEmail()
+    }
 
     override fun toString(): String {
         return "Gamer(" +
@@ -60,6 +60,8 @@ data class GamerUser(
                 "\ninternalId=$internalId)" +
                 "\n##############################################"
     }
+
+    fun rentGame(game: Game): Rent = Rent(this,game)
 
     private fun creatCustonInternalId(){
         val randomNumber = Random.nextInt(1000)

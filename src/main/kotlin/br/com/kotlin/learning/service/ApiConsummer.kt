@@ -1,8 +1,7 @@
 package br.com.kotlin.learning.service
 
-import br.com.kotlin.learning.model.GamerUser
-import br.com.kotlin.learning.model.InfoGame
-import br.com.kotlin.learning.model.InfoGamerUser
+import br.com.kotlin.learning.model.*
+import br.com.kotlin.learning.utils.criaGame
 import br.com.kotlin.learning.utils.criaGamer
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -14,14 +13,31 @@ import java.net.http.HttpResponse
 
 class ApiConsummer {
     private val logger = KotlinLogging.logger {}
-    fun gameSearch(id: String): Result<InfoGame> {
+//    fun gameSearchFirst(id: String): Result<InfoGame> {
+//        return runCatching {
+//            val url = "https://www.cheapshark.com/api/1.0/games?id=$id"
+//
+//            val json = dataConsumme(url)
+//            val gson = Gson()
+//
+//            gson.fromJson(json, InfoGame::class.java)
+//        }.onFailure {
+//            println("Error in request game API.")
+//        }
+//    }
+
+    fun gameSearch(): Result<List<Game>>{
         return runCatching {
-            val url = "https://www.cheapshark.com/api/1.0/games?id=$id"
+            val url = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/jogos.json"
 
             val json = dataConsumme(url)
             val gson = Gson()
 
-            gson.fromJson(json, InfoGame::class.java)
+            val gameTypeObject = object : TypeToken<List<InfoGame>>() {}.type
+            val infoGameList: List<InfoGame> = gson.fromJson(json, gameTypeObject)
+            val gamerUserMapped = infoGameList.map { infoGames-> infoGames.criaGame() }
+
+            gamerUserMapped
         }.onFailure {
             println("Error in request game API.")
         }

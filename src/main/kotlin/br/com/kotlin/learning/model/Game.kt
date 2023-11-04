@@ -1,8 +1,8 @@
 package br.com.kotlin.learning.model
 
 data class Game(val title:String,
-                val thumb:String) {
-    var description: String? = null
+                val thumb:String,
+                val description: String) {
     override fun toString(): String {
         return "Meu Jogo: \n" +
                 "Título: $title \n" +
