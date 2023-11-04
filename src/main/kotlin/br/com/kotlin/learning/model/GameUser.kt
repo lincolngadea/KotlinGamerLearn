@@ -44,12 +44,12 @@ data class GameUser(
         }
     }
 
-    init {
-        if(this.name.isBlank()){
-            throw IllegalArgumentException("Name is null or blank!")
-        }
-        this.email = checkEmail()
-    }
+//    init {
+//        if(this.name.isBlank()){
+//            throw IllegalArgumentException("Name is null or blank!")
+//        }
+//        this.email = checkEmail()
+//    }
 
     override fun toString(): String {
         return "Gamer(" +

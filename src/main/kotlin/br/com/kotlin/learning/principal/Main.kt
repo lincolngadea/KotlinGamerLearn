@@ -46,7 +46,13 @@ fun main() {
         println("Do you want a new search?Y/N")
         val ask = read.nextLine()
     } while (ask.equals("Y", true))
-    println("Games Searcheds:")
+
+    println("Games Searched:")
     println(gamer.gamesSearched)
+
+    println("Games Searched by title:")
+    gamer.gamesSearched.sortBy { it?.title }
+    gamer.gamesSearched.forEach { println("Title:${it?.title}") }
+
     println("End Search!")
 }
