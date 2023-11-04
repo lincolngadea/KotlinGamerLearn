@@ -4,7 +4,7 @@ import java.lang.IllegalArgumentException
 import java.util.Scanner
 import kotlin.random.Random
 
-data class GameUser(
+data class GamerUser(
     var name: String,
     var email: String
 ) {
@@ -24,7 +24,7 @@ data class GameUser(
     }
 
     companion object{
-        fun createGamer(read: Scanner): GameUser{
+        fun createGamer(read: Scanner): GamerUser{
             println("Well Come the AluGames! We are make your register. Type your name:")
             val name = read.nextLine()
             println("Type your email:")
@@ -37,9 +37,9 @@ data class GameUser(
                 val birthDay = read.nextLine()
                 println("Type your username:")
                 val username = read.nextLine()
-                GameUser(name,email,birthDay,username)
+                GamerUser(name,email,birthDay,username)
             }else{
-                GameUser(name,email)
+                GamerUser(name,email)
             }
         }
     }

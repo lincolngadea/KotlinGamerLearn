@@ -1,14 +1,14 @@
 package br.com.kotlin.learning.principal
 
 import br.com.kotlin.learning.model.Game
-import br.com.kotlin.learning.model.GameUser
+import br.com.kotlin.learning.model.GamerUser
 import br.com.kotlin.learning.service.ApiConsummer
 import br.com.kotlin.learning.utils.transformaData
 import java.util.Scanner
 
 fun main() {
     val read = Scanner(System.`in`)
-    val gamer = GameUser.createGamer(read)
+    val gamer = GamerUser.createGamer(read)
     println(gamer)
     gamer.birthDay?.let { println(it.transformaData()) }
     var myGame: Game? = null

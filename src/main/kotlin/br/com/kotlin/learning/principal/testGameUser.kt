@@ -1,13 +1,6 @@
-import br.com.kotlin.learning.model.GameUser
+import br.com.kotlin.learning.service.ApiConsummer
 
 fun main(){
-    val gamer = GameUser("Lincoln","lincoln@email.com")
-    println(gamer)
-
-    gamer.let {
-        it.birthDay = "09/09/2009"
-        it.user = "Lincoln10"
-    }
-
-    println(gamer)
+    val consummerGamer = ApiConsummer().gamerUserSearch()
+    println(consummerGamer)
 }

@@ -8,5 +8,6 @@ fun String.transformaData(): Int{
     val dateFormated = DateTimeFormatter.ofPattern("dd/MM/yyyy")
     val birthDay = LocalDate.parse(this,dateFormated)
     val today = LocalDate.now()
+
     return Period.between(birthDay,today).years
 }
