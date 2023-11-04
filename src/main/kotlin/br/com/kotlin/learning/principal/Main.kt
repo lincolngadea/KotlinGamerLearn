@@ -3,12 +3,14 @@ package br.com.kotlin.learning.principal
 import br.com.kotlin.learning.model.Game
 import br.com.kotlin.learning.model.GameUser
 import br.com.kotlin.learning.service.ApiConsummer
+import br.com.kotlin.learning.utils.transformaData
 import java.util.Scanner
 
 fun main() {
     val read = Scanner(System.`in`)
     val gamer = GameUser.createGamer(read)
     println(gamer)
+    gamer.birthDay?.let { println(it.transformaData()) }
     var myGame: Game? = null
     val apiSearch = ApiConsummer()
     do {
@@ -54,5 +56,14 @@ fun main() {
     gamer.gamesSearched.sortBy { it?.title }
     gamer.gamesSearched.forEach { println("Title:${it?.title}") }
 
+    println("Do you Want remove some element of game list?Y/N")
+    val removeGameElement = read.nextLine()
+    if(removeGameElement.equals("Y",true)){
+        println("Insert element position to remove:")
+        val elementPosition = read.nextInt()
+        gamer.gamesSearched.removeAt(elementPosition)
+        println("Updated game list:")
+        println(gamer.gamesSearched)
+    }
     println("End Search!")
 }
