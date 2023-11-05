@@ -1,3 +1,5 @@
+package br.com.kotlin.learning.principal
+
 import br.com.kotlin.learning.model.RentalPeriod
 import br.com.kotlin.learning.service.ApiConsummer
 import java.time.LocalDate
