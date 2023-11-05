@@ -6,13 +6,12 @@ import java.time.Period
 data class Rent(
     val gamerUser: GamerUser,
     val game: Game,
-    val startDate: LocalDate,
-    val endDate: LocalDate,
-    val rentValue: Double = game.price * Period.between(startDate,endDate).days
+    val rentalPeriod: RentalPeriod,
+    val rentValue: Double = game.price * rentalPeriod.inDays
 ){
     override fun toString(): String {
         return "${gamerUser.name} rent the game ${game.title} " +
                 "per R$$rentValue (R$${game.price}/day) " +
-                "during ${Period.between(startDate,endDate).days} Day(s)"
+                "during ${rentalPeriod.inDays} Day(s)"
     }
 }

@@ -40,13 +40,11 @@ data class GamerUser(
 
     fun rentGame(
         game: Game,
-        startDate: LocalDate,
-        endDate: LocalDate
+        rentalPeriod: RentalPeriod
     ): Rent = Rent(
         this,
         game,
-        startDate,
-        endDate
+        rentalPeriod
     )
 
     private fun creatCustonInternalId(){

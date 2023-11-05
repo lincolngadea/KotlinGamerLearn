@@ -1,3 +1,4 @@
+import br.com.kotlin.learning.model.RentalPeriod
 import br.com.kotlin.learning.service.ApiConsummer
 import java.time.LocalDate
 
@@ -12,7 +13,8 @@ fun main(){
 
     val startDate = LocalDate.now()
     val endDate = startDate.plusDays(10)
-    val rent = gamerAna.rentGame(gameResidentVillage, startDate,endDate)
+    val rentalPeriod = RentalPeriod(startDate,endDate)
+    val rent = gamerAna.rentGame(gameResidentVillage,rentalPeriod)
 
     println(rent)
 }
