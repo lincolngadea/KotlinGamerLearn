@@ -1,6 +1,5 @@
 package br.com.kotlin.learning.model
 
-import java.time.LocalDate
 import kotlin.random.Random
 
 data class GamerUser(
@@ -11,18 +10,19 @@ data class GamerUser(
     private var user: String? = null
         set(value) {
             field = value
-            if(internalId.isNullOrBlank() || internalId!!.isNotEmpty()) creatCustonInternalId()
+            if (internalId.isNullOrBlank() || internalId!!.isNotEmpty()) creatCustonInternalId()
         }
     private var internalId: String? = null
 
-    //    val gamesSearched = mutableListOf<Game?>()
+    val rentedThisGames = mutableListOf<Rent?>()
+
     constructor(name: String, email: String, birthDay: String, user: String) : this(name, email) {
         this.birthDay = birthDay
         this.user = user
     }
 
     init {
-        if(this.name.isBlank()){
+        if (this.name.isBlank()) {
             throw IllegalArgumentException("Name is null or blank!")
         }
         this.email = checkEmail()
@@ -38,26 +38,23 @@ data class GamerUser(
                 "\n##############################################"
     }
 
-    fun rentGame(
-        game: Game,
-        rentalPeriod: RentalPeriod
-    ): Rent = Rent(
-        this,
-        game,
-        rentalPeriod
-    )
-
-    private fun creatCustonInternalId(){
-        val randomNumber = Random.nextInt(1000)
-        val newRandomNumber = String.format("%04d",randomNumber)
-        internalId ="$user#$newRandomNumber"
+    fun rentGame(game: Game, rentalPeriod: RentalPeriod): Rent {
+        val newRent: Rent = Rent(this, game, rentalPeriod)
+        rentedThisGames.add(newRent)
+        return newRent
     }
 
-    private fun checkEmail(): String{
+    private fun creatCustonInternalId() {
+        val randomNumber = Random.nextInt(1000)
+        val newRandomNumber = String.format("%04d", randomNumber)
+        internalId = "$user#$newRandomNumber"
+    }
+
+    private fun checkEmail(): String {
         val emailRegex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
-        if(emailRegex.matches(email)){
+        if (emailRegex.matches(email)) {
             return email
-        }else{
+        } else {
             throw IllegalArgumentException("Invalid Email!")
         }
     }

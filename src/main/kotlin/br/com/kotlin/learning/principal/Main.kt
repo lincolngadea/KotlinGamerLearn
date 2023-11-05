@@ -12,11 +12,16 @@ fun main(){
 
     val gamerAna = gamerUserList.getOrThrow()[1]
     val gameResidentVillage = gameList.getOrThrow()[10]
+    val gameSpider = gameList.getOrThrow()[13]
+    val gameTheLastOfUs = gameList.getOrThrow()[2]
 
-    val startDate = LocalDate.now()
-    val endDate = startDate.plusDays(10)
-    val rentalPeriod = RentalPeriod(startDate,endDate)
-    val rent = gamerAna.rentGame(gameResidentVillage,rentalPeriod)
+    val rentalPeriod1 = RentalPeriod(LocalDate.now(),LocalDate.now().plusDays(10))
+    val rentalPeriod2 = RentalPeriod(LocalDate.now(),LocalDate.now().plusDays(3))
+    val rentalPeriod3 = RentalPeriod(LocalDate.now(),LocalDate.now().plusDays(15))
 
-    println(rent)
+    gamerAna.rentGame(gameResidentVillage,rentalPeriod1)
+    gamerAna.rentGame(gameSpider,rentalPeriod2)
+    gamerAna.rentGame(gameTheLastOfUs,rentalPeriod3)
+
+    println(gamerAna.rentedThisGames)
 }

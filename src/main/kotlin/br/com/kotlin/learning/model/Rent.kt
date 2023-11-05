@@ -9,6 +9,7 @@ data class Rent(
     val rentalPeriod: RentalPeriod,
     val rentValue: Double = game.price * rentalPeriod.inDays
 ){
+
     override fun toString(): String {
         return "${gamerUser.name} rent the game ${game.title} " +
                 "per R$$rentValue (R$${game.price}/day) " +
