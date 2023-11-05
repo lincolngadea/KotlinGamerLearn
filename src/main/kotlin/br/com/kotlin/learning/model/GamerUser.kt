@@ -22,7 +22,7 @@ data class GamerUser(
     private var user: String? = null
         set(value) {
             field = value
-            if (internalId.isNullOrBlank() || internalId!!.isNotEmpty()) creatCustonInternalId()
+            if (internalId.isNullOrBlank() || internalId!!.isNotEmpty()) createCustomInternalId()
         }
     private var internalId: String? = null
 
@@ -30,12 +30,12 @@ data class GamerUser(
     var plan = StandardPlan("BRONZE")
 
     fun rentGame(game: Game, rentalPeriod: RentalPeriod): Rent {
-        val newRent: Rent = Rent(this, game, rentalPeriod)
+        val newRent = Rent(this, game, rentalPeriod)
         rentedThisGames.add(newRent)
         return newRent
     }
 
-    private fun creatCustonInternalId() {
+    private fun createCustomInternalId() {
         val randomNumber = Random.nextInt(1000)
         val newRandomNumber = String.format("%04d", randomNumber)
         internalId = "$user#$newRandomNumber"
