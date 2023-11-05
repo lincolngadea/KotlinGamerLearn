@@ -11,7 +11,7 @@ fun main(){
     val gamerUserList = consummer.gamerUserSearch()
     val gameList = consummer.gameSearch()
 
-    val gamerAna = gamerUserList.getOrThrow()[1]
+//    val gamerAna = gamerUserList.getOrThrow()[1]
     val gameResidentVillage = gameList.getOrThrow()[10]
     val gameSpider = gameList.getOrThrow()[13]
     val gameTheLastOfUs = gameList.getOrThrow()[2]
@@ -34,4 +34,9 @@ fun main(){
     gamerCaroline.rentGame(gameTheLastOfUs,rentalPeriod3)
 
     println(gamerCaroline.rentedThisGames)
+
+    gamerCaroline.toRecommend(7.0)
+    gamerCaroline.toRecommend(6.0)
+    gamerCaroline.toRecommend(9.5)
+    println(gamerCaroline)
 }

@@ -5,7 +5,7 @@ import kotlin.random.Random
 data class GamerUser(
     var name: String,
     var email: String
-) {
+): Recommended {
     init {
         if (this.name.isBlank()) {
             throw IllegalArgumentException("Name is null or blank!")
@@ -25,9 +25,17 @@ data class GamerUser(
             if (internalId.isNullOrBlank() || internalId!!.isNotEmpty()) createCustomInternalId()
         }
     private var internalId: String? = null
+    private val listGrades = mutableListOf<Double>()
 
     val rentedThisGames = mutableListOf<Rent>()
     var plan: Plan = PlanStandard("BRONZE")
+
+    override val gradeAverage: Double
+        get() = listGrades.average()
+
+    override fun toRecommend(grade: Double) {
+        listGrades.add(grade)
+    }
 
     fun rentGame(game: Game, rentalPeriod: RentalPeriod): Rent {
         val newRent = Rent(this, game, rentalPeriod)
@@ -58,11 +66,12 @@ data class GamerUser(
 
     override fun toString(): String {
         return "Gamer(" +
-                "\nname='$name', " +
-                "\nemail='$email', " +
-                "\nbirthDay=$birthDay, " +
-                "\nuser=$user, " +
-                "\ninternalId=$internalId)" +
+                "\nName: '$name', " +
+                "\nEmail: '$email', " +
+                "\nBirthDay: $birthDay, " +
+                "\nUser: $user, " +
+                "\nInternalId: $internalId)" +
+                "\nReputation: $gradeAverage" +
                 "\n##############################################"
     }
 }
