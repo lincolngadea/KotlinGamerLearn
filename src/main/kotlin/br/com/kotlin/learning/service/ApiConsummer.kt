@@ -1,8 +1,8 @@
 package br.com.kotlin.learning.service
 
 import br.com.kotlin.learning.model.*
-import br.com.kotlin.learning.utils.criaGame
-import br.com.kotlin.learning.utils.criaGamer
+import br.com.kotlin.learning.utils.createGame
+import br.com.kotlin.learning.utils.createGamerUser
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import mu.KotlinLogging
@@ -21,9 +21,9 @@ class ApiConsummer {
             val json = dataConsumme(url)
             val gson = Gson()
 
-            val gameTypeObject = object : TypeToken<List<InfoGame>>() {}.type
-            val infoGameList: List<InfoGame> = gson.fromJson(json, gameTypeObject)
-            val gamerUserMapped = infoGameList.map { infoGames-> infoGames.criaGame() }
+            val gameTypeObject = object : TypeToken<List<GameInfo>>() {}.type
+            val gameInfoList: List<GameInfo> = gson.fromJson(json, gameTypeObject)
+            val gamerUserMapped = gameInfoList.map { infoGames-> infoGames.createGame() }
 
             gamerUserMapped
         }.onFailure {
@@ -39,9 +39,9 @@ class ApiConsummer {
 
             val gson = Gson()
 
-            val gamerTypeObject = object : TypeToken<List<InfoGamerUser>>() {}.type
-            val infoGamerList: List<InfoGamerUser> = gson.fromJson(json, gamerTypeObject)
-            val gamerUserMapped = infoGamerList.map { infoGamerUser -> infoGamerUser.criaGamer() }
+            val gamerTypeObject = object : TypeToken<List<GamerUserInfo>>() {}.type
+            val infoGamerList: List<GamerUserInfo> = gson.fromJson(json, gamerTypeObject)
+            val gamerUserMapped = infoGamerList.map { infoGamerUser -> infoGamerUser.createGamerUser() }
 
             gamerUserMapped
         }.onFailure {

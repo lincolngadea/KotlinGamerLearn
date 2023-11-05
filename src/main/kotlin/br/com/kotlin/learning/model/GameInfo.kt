@@ -1,5 +1,5 @@
 package br.com.kotlin.learning.model
-data class InfoGame(
+data class GameInfo(
     val titulo: String,
     val capa: String,
     val preco: Double,

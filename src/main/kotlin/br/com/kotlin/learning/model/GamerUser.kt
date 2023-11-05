@@ -26,13 +26,19 @@ data class GamerUser(
         }
     private var internalId: String? = null
 
-    val rentedThisGames = mutableListOf<Rent?>()
-    var plan = StandardPlan("BRONZE")
+    val rentedThisGames = mutableListOf<Rent>()
+    var plan: Plan = PlanStandard("BRONZE")
 
     fun rentGame(game: Game, rentalPeriod: RentalPeriod): Rent {
         val newRent = Rent(this, game, rentalPeriod)
         rentedThisGames.add(newRent)
         return newRent
+    }
+
+    fun monthGames(month:Int): List<Game> {
+        return rentedThisGames
+            .filter { rent ->  rent.rentalPeriod.startDate.monthValue == month}
+            .map { rent ->  rent.game}
     }
 
     private fun createCustomInternalId() {
