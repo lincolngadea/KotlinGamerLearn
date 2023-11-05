@@ -7,6 +7,7 @@ fun InfoGame.criaGame(): Game{
     return Game(
         this.titulo,
         this.capa,
+        this.preco,
         this.descricao
     )
 }

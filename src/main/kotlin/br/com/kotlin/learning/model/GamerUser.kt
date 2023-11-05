@@ -1,5 +1,6 @@
 package br.com.kotlin.learning.model
 
+import java.time.LocalDate
 import kotlin.random.Random
 
 data class GamerUser(
@@ -37,7 +38,16 @@ data class GamerUser(
                 "\n##############################################"
     }
 
-    fun rentGame(game: Game): Rent = Rent(this,game)
+    fun rentGame(
+        game: Game,
+        startDate: LocalDate,
+        endDate: LocalDate
+    ): Rent = Rent(
+        this,
+        game,
+        startDate,
+        endDate
+    )
 
     private fun creatCustonInternalId(){
         val randomNumber = Random.nextInt(1000)
