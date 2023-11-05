@@ -27,7 +27,7 @@ fun main(){
 //    println(gamerAna.rentedThisGames)
 
     val gamerCaroline = gamerUserList.getOrThrow()[3]
-    gamerCaroline.plan = PlanAssign("SILVER", 9.90, 2)
+    gamerCaroline.plan = PlanAssign("SILVER", 9.90,0.15 ,2)
 
     gamerCaroline.rentGame(gameResidentVillage, rentalPeriod1)
     gamerCaroline.rentGame(gameSpider, rentalPeriod2)
@@ -36,7 +36,10 @@ fun main(){
     println(gamerCaroline.rentedThisGames)
 
     gamerCaroline.toRecommend(7.0)
-    gamerCaroline.toRecommend(6.0)
+    gamerCaroline.toRecommend(10.0)
     gamerCaroline.toRecommend(9.5)
     println(gamerCaroline)
+
+    gamerCaroline.rentGame(gameTheLastOfUs, rentalPeriod3)
+    println(gamerCaroline.rentedThisGames)
 }
