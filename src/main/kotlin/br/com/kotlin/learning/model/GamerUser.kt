@@ -6,6 +6,18 @@ data class GamerUser(
     var name: String,
     var email: String
 ) {
+    init {
+        if (this.name.isBlank()) {
+            throw IllegalArgumentException("Name is null or blank!")
+        }
+        this.email = checkEmail()
+    }
+
+    constructor(name: String, email: String, birthDay: String, user: String) : this(name, email) {
+        this.birthDay = birthDay
+        this.user = user
+    }
+
     private var birthDay: String? = null
     private var user: String? = null
         set(value) {
@@ -15,28 +27,7 @@ data class GamerUser(
     private var internalId: String? = null
 
     val rentedThisGames = mutableListOf<Rent?>()
-
-    constructor(name: String, email: String, birthDay: String, user: String) : this(name, email) {
-        this.birthDay = birthDay
-        this.user = user
-    }
-
-    init {
-        if (this.name.isBlank()) {
-            throw IllegalArgumentException("Name is null or blank!")
-        }
-        this.email = checkEmail()
-    }
-
-    override fun toString(): String {
-        return "Gamer(" +
-                "\nname='$name', " +
-                "\nemail='$email', " +
-                "\nbirthDay=$birthDay, " +
-                "\nuser=$user, " +
-                "\ninternalId=$internalId)" +
-                "\n##############################################"
-    }
+    var plan = StandardPlan("BRONZE")
 
     fun rentGame(game: Game, rentalPeriod: RentalPeriod): Rent {
         val newRent: Rent = Rent(this, game, rentalPeriod)
@@ -57,6 +48,16 @@ data class GamerUser(
         } else {
             throw IllegalArgumentException("Invalid Email!")
         }
+    }
+
+    override fun toString(): String {
+        return "Gamer(" +
+                "\nname='$name', " +
+                "\nemail='$email', " +
+                "\nbirthDay=$birthDay, " +
+                "\nuser=$user, " +
+                "\ninternalId=$internalId)" +
+                "\n##############################################"
     }
 }
 
