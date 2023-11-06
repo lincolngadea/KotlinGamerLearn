@@ -1,21 +1,24 @@
 package br.com.kotlin.learning.model
 
+import java.math.BigDecimal
+import java.math.RoundingMode
+
 class PlanAssign(
     type: String,
     val monthPayment: Double,
-    private val discountPercentage: Double,
+    private val discountPercentage: BigDecimal,
     private val gameIncludes: Int
 ) : Plan(type) {
-    override fun getPrice(rent: Rent): Double {
+    override fun getPrice(rent: Rent): BigDecimal {
         val numberOfRentals = rent.gamerUser.monthGames(rent.rentalPeriod.startDate.monthValue).size + 1
         return if (numberOfRentals <= gameIncludes) {
-            0.0
+            BigDecimal(0.0)
         } else {
             var originalPrice = super.getPrice(rent)
             if (rent.gamerUser.gradeAverage > 8) {
                 originalPrice -= originalPrice * discountPercentage
             }
-            originalPrice
+            originalPrice.setScale(2,RoundingMode.HALF_EVEN)
         }
     }
 }

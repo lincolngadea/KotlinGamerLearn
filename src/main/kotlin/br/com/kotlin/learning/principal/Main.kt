@@ -5,6 +5,7 @@ import br.com.kotlin.learning.model.RentalPeriod
 import br.com.kotlin.learning.service.ApiConsummer
 import com.google.gson.GsonBuilder
 import java.io.File
+import java.math.BigDecimal
 import java.time.LocalDate
 
 fun main(){
@@ -29,7 +30,7 @@ fun main(){
 //    println(gamerAna.rentedThisGames)
 
     val gamerCaroline = gamerUserList.getOrThrow()[3]
-    gamerCaroline.plan = PlanAssign("SILVER", 9.90,0.15 ,2)
+    gamerCaroline.plan = PlanAssign("SILVER", 9.90, BigDecimal(0.15) ,2)
 
     gamerCaroline.rentGame(gameResidentVillage, rentalPeriod1)
     gamerCaroline.rentGame(gameSpider, rentalPeriod2)
@@ -48,7 +49,7 @@ fun main(){
     gamerCaroline.rentGame(gameTheLastOfUs, rentalPeriod3)
 //    println("Games Recomendations: ${gamerCaroline.listRecommendedGame}")
 
-//    println(gamerCaroline.rentedThisGames)
+    println(gamerCaroline.rentedThisGames)
 
     val gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
     val serializer = gson.toJson(gamerCaroline.listRecommendedGame)
