@@ -26,6 +26,7 @@ data class GamerUser(
         }
     private var internalId: String? = null
     private val listGrades = mutableListOf<Double>()
+    val listRecommendedGame = mutableListOf<Game>()
 
     val rentedThisGames = mutableListOf<Rent>()
     var plan: Plan = PlanStandard("BRONZE")
@@ -35,6 +36,11 @@ data class GamerUser(
 
     override fun toRecommend(grade: Double) {
         listGrades.add(grade)
+    }
+
+    fun toRecommendGame(game: Game, grade: Double) {
+        game.toRecommend(grade)
+        listRecommendedGame.add(game)
     }
 
     fun rentGame(game: Game, rentalPeriod: RentalPeriod): Rent {
