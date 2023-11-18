@@ -13,13 +13,13 @@ data class Player(
         this.email = checkEmail()
     }
 
-    constructor(name: String, email: String, birthDay: String, user: String) : this(name, email) {
+    constructor(name: String, email: String, birthDay: String? = null, user: String) : this(name, email) {
         this.birthDay = birthDay
         this.user = user
     }
 
-    private var birthDay: String? = null
-    private var user: String? = null
+    var birthDay: String? = null
+    var user: String? = null
         set(value) {
             field = value
             if (internalId.isNullOrBlank() || internalId!!.isNotEmpty()) createCustomInternalId()
@@ -71,12 +71,12 @@ data class Player(
     }
 
     override fun toString(): String {
-        return "Player(" +
+        return "Player: " +
                 "\nName: '$name', " +
                 "\nEmail: '$email', " +
                 "\nBirthDay: $birthDay, " +
                 "\nUser: $user, " +
-                "\nInternalId: $internalId)" +
+                "\nInternalId: $internalId" +
                 "\nReputation: $gradeAverage" +
                 "\n##############################################"
     }
