@@ -2,7 +2,7 @@ package br.com.kotlin.learning.model
 
 import kotlin.random.Random
 
-data class GamerUser(
+data class Player(
     var name: String,
     var email: String
 ): Recommended {
@@ -71,7 +71,7 @@ data class GamerUser(
     }
 
     override fun toString(): String {
-        return "Gamer(" +
+        return "Player(" +
                 "\nName: '$name', " +
                 "\nEmail: '$email', " +
                 "\nBirthDay: $birthDay, " +

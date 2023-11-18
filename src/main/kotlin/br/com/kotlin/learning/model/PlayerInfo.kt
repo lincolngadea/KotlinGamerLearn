@@ -1,6 +1,6 @@
 package br.com.kotlin.learning.model
 
-data class GamerUserInfo(
+data class PlayerInfo(
     val nome: String,
     val email: String,
     val dataNascimento: String,

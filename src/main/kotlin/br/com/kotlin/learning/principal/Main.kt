@@ -11,7 +11,7 @@ import java.time.LocalDate
 fun main(){
     val consummer = ApiConsummer()
 
-    val gamerUserList = consummer.gamerUserSearch()
+    val playerList = consummer.playerSearch()
     val gameList = consummer.gameSearch()
 
 //    val gamerAna = gamerUserList.getOrThrow()[1]
@@ -29,30 +29,30 @@ fun main(){
 //
 //    println(gamerAna.rentedThisGames)
 
-    val gamerCaroline = gamerUserList.getOrThrow()[3]
-    gamerCaroline.plan = PlanAssign("SILVER", 9.90, BigDecimal(0.15) ,2)
+    val playerCaroline = playerList.getOrThrow()[3]
+    playerCaroline.plan = PlanAssign("SILVER", 9.90, BigDecimal(0.15) ,2)
 
-    gamerCaroline.rentGame(gameResidentVillage, rentalPeriod1)
-    gamerCaroline.rentGame(gameSpider, rentalPeriod2)
-    gamerCaroline.rentGame(gameTheLastOfUs,rentalPeriod3)
+    playerCaroline.rentGame(gameResidentVillage, rentalPeriod1)
+    playerCaroline.rentGame(gameSpider, rentalPeriod2)
+    playerCaroline.rentGame(gameTheLastOfUs,rentalPeriod3)
 
 //    println(gamerCaroline.rentedThisGames)
 
-    gamerCaroline.toRecommend(7.0)
-    gamerCaroline.toRecommend(10.0)
-    gamerCaroline.toRecommend(9.5)
+    playerCaroline.toRecommend(7.0)
+    playerCaroline.toRecommend(10.0)
+    playerCaroline.toRecommend(9.5)
 //    println(gamerCaroline)
 
-    gamerCaroline.toRecommendGame(gameTheLastOfUs,10.0)
-    gamerCaroline.toRecommendGame(gameTheLastOfUs,9.0)
+    playerCaroline.toRecommendGame(gameTheLastOfUs,10.0)
+    playerCaroline.toRecommendGame(gameTheLastOfUs,9.0)
 
-    gamerCaroline.rentGame(gameTheLastOfUs, rentalPeriod3)
+    playerCaroline.rentGame(gameTheLastOfUs, rentalPeriod3)
 //    println("Games Recomendations: ${gamerCaroline.listRecommendedGame}")
 
-    println(gamerCaroline.rentedThisGames)
+    println(playerCaroline.rentedThisGames)
 
     val gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
-    val serializer = gson.toJson(gamerCaroline.listRecommendedGame)
+    val serializer = gson.toJson(playerCaroline.listRecommendedGame)
 
     val file = File("jogosRecomendados.json")
     file.writeText(serializer)

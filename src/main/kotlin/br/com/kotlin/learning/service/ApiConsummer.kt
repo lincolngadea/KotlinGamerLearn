@@ -2,7 +2,7 @@ package br.com.kotlin.learning.service
 
 import br.com.kotlin.learning.model.*
 import br.com.kotlin.learning.utils.createGame
-import br.com.kotlin.learning.utils.createGamerUser
+import br.com.kotlin.learning.utils.createPlayer
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import mu.KotlinLogging
@@ -23,15 +23,15 @@ class ApiConsummer {
 
             val gameTypeObject = object : TypeToken<List<GameInfo>>() {}.type
             val gameInfoList: List<GameInfo> = gson.fromJson(json, gameTypeObject)
-            val gamerUserMapped = gameInfoList.map { infoGames-> infoGames.createGame() }
+            val playerMapped = gameInfoList.map { infoGames-> infoGames.createGame() }
 
-            gamerUserMapped
+            playerMapped
         }.onFailure {
             println("Error in request game API.")
         }
     }
 
-    fun gamerUserSearch(): Result<List<GamerUser>> {
+    fun playerSearch(): Result<List<Player>> {
         return runCatching {
             val url = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json"
 
@@ -39,11 +39,11 @@ class ApiConsummer {
 
             val gson = Gson()
 
-            val gamerTypeObject = object : TypeToken<List<GamerUserInfo>>() {}.type
-            val infoGamerList: List<GamerUserInfo> = gson.fromJson(json, gamerTypeObject)
-            val gamerUserMapped = infoGamerList.map { infoGamerUser -> infoGamerUser.createGamerUser() }
+            val playerTypeObject = object : TypeToken<List<PlayerInfo>>() {}.type
+            val infoPlayerList: List<PlayerInfo> = gson.fromJson(json, playerTypeObject)
+            val playerMapped = infoPlayerList.map { playerInfo -> playerInfo.createPlayer() }
 
-            gamerUserMapped
+            playerMapped
         }.onFailure {
             println("Error in request game API.")
         }

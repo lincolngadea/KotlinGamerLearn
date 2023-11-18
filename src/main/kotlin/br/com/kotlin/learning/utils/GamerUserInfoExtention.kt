@@ -1,10 +1,10 @@
 package br.com.kotlin.learning.utils
 
-import br.com.kotlin.learning.model.GamerUser
-import br.com.kotlin.learning.model.GamerUserInfo
+import br.com.kotlin.learning.model.Player
+import br.com.kotlin.learning.model.PlayerInfo
 
-fun GamerUserInfo.createGamerUser(): GamerUser{
-    return GamerUser(
+fun PlayerInfo.createPlayer(): Player{
+    return Player(
         this.nome,
         this.email,
         this.dataNascimento,

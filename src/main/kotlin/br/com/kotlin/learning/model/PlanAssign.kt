@@ -10,12 +10,12 @@ class PlanAssign(
     private val gameIncludes: Int
 ) : Plan(type) {
     override fun getPrice(rent: Rent): BigDecimal {
-        val numberOfRentals = rent.gamerUser.monthGames(rent.rentalPeriod.startDate.monthValue).size + 1
+        val numberOfRentals = rent.player.monthGames(rent.rentalPeriod.startDate.monthValue).size + 1
         return if (numberOfRentals <= gameIncludes) {
             BigDecimal(0.0)
         } else {
             var originalPrice = super.getPrice(rent)
-            if (rent.gamerUser.gradeAverage > 8) {
+            if (rent.player.gradeAverage > 8) {
                 originalPrice -= originalPrice * discountPercentage
             }
             originalPrice.setScale(2,RoundingMode.HALF_EVEN)
