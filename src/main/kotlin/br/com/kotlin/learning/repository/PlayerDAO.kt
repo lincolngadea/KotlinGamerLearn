@@ -4,23 +4,17 @@ import br.com.kotlin.learning.entities.PlayerEntity
 import br.com.kotlin.learning.model.Player
 import javax.persistence.EntityManager
 
-class PlayerDAO(private val manager: EntityManager) {
-    fun getPlayers(): List<Player>{
-        val query = manager.createQuery("FROM PlayerEntity", PlayerEntity::class.java)
-        return query.resultList.map {
-            Player(it.nome,it.email,it.aniversario,it.usuario!!)
-        }
+class PlayerDAO(manager: EntityManager): DAO<Player,PlayerEntity>(manager, PlayerEntity::class.java) {
+    override fun toModel(entity: PlayerEntity): Player {
+        return Player(entity.nome,entity.email,entity.aniversario,entity.usuario)
     }
 
-    fun addPlayer(player: Player){
-        val entity = PlayerEntity(
-            aniversario = player.birthDay,
-            email = player.email,
-            nome = player.name,
-            usuario = player.user!!
+    override fun toEntity(model: Player): PlayerEntity {
+        return PlayerEntity(
+            aniversario = model.birthDay,
+            email = model.email,
+            nome = model.name,
+            usuario = model.user!!
         )
-        manager.transaction.begin()
-        manager.persist(entity)
-        manager.transaction.commit()
     }
 }

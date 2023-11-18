@@ -7,6 +7,7 @@ data class Game(@Expose val title:String,
                 val price:Double,
                 val description: String
 ): Recommended {
+
     private val listGrades = mutableListOf<Double>()
     override val gradeAverage: Double
         get() = listGrades.average()
