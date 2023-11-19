@@ -10,5 +10,7 @@ data class PlayerEntity(
     val aniversario: String? = null,
     val email: String = "email@email",
     val nome: String = "Nome",
-    val usuario: String = "Usuario"
+    val usuario: String = "Usuario",
+    @ManyToOne
+    val plano: PlanEntity = PlanStandardEntity()
 )

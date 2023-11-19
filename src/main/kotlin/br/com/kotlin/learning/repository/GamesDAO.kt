@@ -2,6 +2,7 @@ package br.com.kotlin.learning.repository
 
 import br.com.kotlin.learning.entities.GameEntity
 import br.com.kotlin.learning.model.Game
+import br.com.kotlin.learning.model.Plan
 import javax.persistence.EntityManager
 
 class GamesDAO(manager: EntityManager) : DAO<Game, GameEntity>(manager, GameEntity::class.java) {
