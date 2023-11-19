@@ -1,5 +1,6 @@
 package br.com.kotlin.learning.repository
 
+import br.com.kotlin.learning.model.Player
 import javax.persistence.EntityManager
 
 abstract class DAO <TModel, TEntity>(protected val manager: EntityManager, protected  val entityType:Class<TEntity>) {
