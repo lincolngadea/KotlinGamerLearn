@@ -4,7 +4,8 @@ import kotlin.random.Random
 
 data class Player(
     var name: String,
-    var email: String
+    var email: String,
+    var id: Int = 0,
 ): Recommended {
     init {
         if (this.name.isBlank()) {
@@ -77,6 +78,7 @@ data class Player(
                 "\nBirthDay: $birthDay, " +
                 "\nUser: $user, " +
                 "\nInternalId: $internalId" +
+                "\nPlan: ${plan.type}" +
                 "\nReputation: $gradeAverage" +
                 "\n##############################################"
     }

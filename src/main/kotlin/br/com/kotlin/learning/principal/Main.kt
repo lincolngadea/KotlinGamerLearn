@@ -20,15 +20,16 @@ fun main() {
     val manager = DataBase.getEntityManager()
     val gamesDAO = GamesDAO(manager)
     val playersDAO = PlayerDAO(manager)
+
 //    gamesDAO.addEntity(game)
 
-//    gamesDAO.addGames(game)
-    val gamesList: List<Game> = gamesDAO.getModelList()
+//    gamesDAO.deleteModel(12)
+    val gamesList = playersDAO.getModelFromId(3)
     println(gamesList)
-
-    playersDAO.addEntity(player)
-    val playersList = playersDAO.getModelList()
-    println(playersList)
+//
+//    playersDAO.addEntity(player)
+//    val playersList = playersDAO.getModelList()
+//    println(playersList)
 
     manager.close()
 }

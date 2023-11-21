@@ -25,10 +25,12 @@ class PlanAssign(
     }
 
     override fun toString(): String {
-        return "PlanAssign(" +
-                "\nmonthPayment=$monthPayment, " +
-                "\ndiscountPercentage=$discountPercentage, " +
-                "\ngameIncludes=$gameIncludes" +
+        return "\nPlanAssign(" +
+                "\nTipo do Plano: $type" +
+                "\nPagamento Mensal: $monthPayment, " +
+                "\nDisconto: $discountPercentage, " +
+                "\nJogos Inclusos: $gameIncludes" +
+                "\nId: $id" +
                 "\n####################################################)\n"
     }
 

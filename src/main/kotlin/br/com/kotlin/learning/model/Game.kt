@@ -5,7 +5,8 @@ import com.google.gson.annotations.Expose
 data class Game(@Expose val title:String,
                 @Expose val thumb:String,
                 val price:Double,
-                val description: String
+                val description: String,
+                val id: Int = 0
 ): Recommended {
 
     private val listGrades = mutableListOf<Double>()
@@ -17,6 +18,7 @@ data class Game(@Expose val title:String,
     }
     override fun toString(): String {
         return "My game: \n" +
+                "Id: $id\n" +
                 "Title: $title \n" +
                 "Thumb: $thumb \n" +
                 "Price: $price \n" +

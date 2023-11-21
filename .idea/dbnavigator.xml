@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -23,7 +23,12 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="2a7d5b50-b0fd-41fe-9395-77eccd638fa2" dataset="alugames1.players" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="2a7d5b50-b0fd-41fe-9395-77eccd638fa2" dataset="alugames1.PlanEntity" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="2a7d5b50-b0fd-41fe-9395-77eccd638fa2" dataset="alugames.players" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="2a7d5b50-b0fd-41fe-9395-77eccd638fa2" dataset="alugames.jogos" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="2a7d5b50-b0fd-41fe-9395-77eccd638fa2" dataset="alugames.PlanEntity" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="2a7d5b50-b0fd-41fe-9395-77eccd638fa2" dataset="alugames1.jogos" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
@@ -93,7 +98,7 @@
           <tcp-port-from value="4000" />
           <tcp-port-to value="4999" />
         </debugger>
-        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
+        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false" hide-audit-columns="false">
           <object-type-filter>
             <object-type name="SCHEMA" enabled="true" />
             <object-type name="USER" enabled="true" />
@@ -275,6 +280,7 @@
       <confirmations>
         <save-changes value="false" />
         <revert-changes value="true" />
+        <exit-on-changes value="ASK" />
       </confirmations>
     </code-editor-settings>
     <code-completion-settings>

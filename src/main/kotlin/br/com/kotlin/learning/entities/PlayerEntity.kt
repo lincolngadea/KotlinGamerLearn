@@ -1,5 +1,6 @@
 package br.com.kotlin.learning.entities
 
+import org.hibernate.engine.internal.Cascade
 import javax.persistence.*
 
 @Entity
@@ -12,5 +13,5 @@ data class PlayerEntity(
     val nome: String = "Nome",
     val usuario: String = "Usuario",
     @ManyToOne
-    val plano: PlanEntity = PlanStandardEntity()
+    var plano: PlanEntity = PlanStandardEntity()
 )

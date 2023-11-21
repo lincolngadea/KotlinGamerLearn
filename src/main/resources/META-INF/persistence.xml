@@ -5,7 +5,7 @@
     <persistence-unit name="alugames" transaction-type="RESOURCE_LOCAL">
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/alugames"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/alugames1"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.password" value="root"/>
 

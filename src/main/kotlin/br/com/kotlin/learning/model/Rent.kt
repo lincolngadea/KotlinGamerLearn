@@ -8,6 +8,8 @@ data class Rent(
     val rentalPeriod: RentalPeriod
 ){
     private val rentValue: BigDecimal = player.plan.getPrice(this)
+    var id:Int = 0
+
     override fun toString(): String {
         return "${player.name} rent the game ${game.title} " +
                 "per R$$rentValue (R$${game.price}/day) " +

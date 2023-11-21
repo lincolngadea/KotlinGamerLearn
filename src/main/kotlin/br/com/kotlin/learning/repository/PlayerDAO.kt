@@ -13,7 +13,9 @@ class PlayerDAO(manager: EntityManager): DAO<Player,PlayerEntity>(manager, Playe
             entity.email,
             entity.aniversario,
             entity.usuario
-        ).apply { plan = entity.plano.toModel() }
+        ).apply {
+            plan = entity.plano.toModel()
+        }
     }
 
     override fun toEntity(model: Player): PlayerEntity {

@@ -8,7 +8,7 @@ import javax.persistence.EntityManager
 class GamesDAO(manager: EntityManager) : DAO<Game, GameEntity>(manager, GameEntity::class.java) {
 
     override fun toModel(entity: GameEntity): Game {
-        return Game(entity.titulo, entity.capa, entity.preco, entity.descricao)
+        return Game(entity.titulo, entity.capa, entity.preco, entity.descricao,entity.id)
     }
 
     override fun toEntity(model: Game): GameEntity {
